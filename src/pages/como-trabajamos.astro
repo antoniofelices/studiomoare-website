@@ -1,0 +1,54 @@
+---
+import Layout from '@layouts/layout-base.astro';
+import Hero from '@components/hero';
+
+import { getEntry } from 'astro:content';
+const dataRaw = await getEntry('static-data', 'page-como-trabajamos');
+const dataFragments = dataRaw.data;
+---
+
+<Layout title={dataFragments.fragment_15} description="Escribenos si tienes dudas, quieres información sobre nuestros servicios o simplemente quieres saludarnos">
+	<main>
+		<Hero
+			maintitle={dataFragments.fragment_15}
+			secondarycontent={dataFragments.fragment_3}
+		/>
+		<div class="container py-4">
+			<ul class="text-sm sm:text-l list-decimal ml-6">
+				<li>
+				{dataFragments.fragment_4}
+				</li>
+				<li>
+				{dataFragments.fragment_5}
+				</li>
+				<li>
+				{dataFragments.fragment_6}
+				</li>
+				<li>
+				{dataFragments.fragment_7}
+				</li>
+				<li>
+				{dataFragments.fragment_8}
+				</li>
+				<li>
+				{dataFragments.fragment_9}
+				</li>
+				<li>
+				{dataFragments.fragment_10}
+				</li>
+				<li>
+				{dataFragments.fragment_11}
+				</li>
+				<li>
+				{dataFragments.fragment_12}
+				</li>
+				<li>
+				{dataFragments.fragment_13}
+				</li>
+				<li>
+				{dataFragments.fragment_14}
+				</li>
+			</ul>
+		</div>
+	</main>
+</Layout>

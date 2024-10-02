@@ -1,0 +1,53 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import Header from '@components/header';
+import Footer from '@components/footer';
+
+interface Props {
+	title: string;
+	customLang?: string;
+	description?: string;
+	includeFooter?: boolean;
+	mainMenu?: boolean;
+}
+
+const { title, 
+		customLang = "es-ES",
+		description="Un estudio de diseño y desarrollo web en Barcelona",
+		includeFooter = true,
+		mainMenu = true
+	} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={customLang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="alternate" hreflang="ca-ES" href="https://studiomoare.com/ca">
+		<link rel="alternate" hreflang="es-ES" href="https://studiomoare.com/">
+		<title>{title} - Studio Moaré</title>
+		<meta property="og:locale" content={customLang}>
+		<meta property="og:title" content={title}>
+		<meta property="og:title" content={description}>
+		<meta property="og:url" content={currentPath}>
+		<meta property="og:site_name" content="Studio Moaré">
+		<meta property="og:image" content="https://studiomoare.com/studio-moare.webp">
+		<ViewTransitions />
+	</head>
+	<body class="text-m-blue bg-m-beige dark:text-m-beige dark:bg-m-blue">
+		<Header includeMainMenu={mainMenu} />
+		<slot />
+		{includeFooter && <Footer />}
+	</body>
+</html>
+<style is:global>
+	main a {
+		@apply border-b border-dotted
+	}
+</style>

@@ -1,0 +1,54 @@
+---
+import Layout from '@layouts/layout-base.astro';
+import Hero from '@components/hero';
+import ProjectListItem from '@components/project-list-item';
+
+import { getEntry, getCollection } from 'astro:content';
+const dataRaw = await getEntry('static-data', 'template-technologies');
+const dataFragments = dataRaw.data;
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  const uniqueTags = [...new Set(projects.map((post) => post.data.tags).flat())];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = projects.filter((post) =>
+      post.data.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={dataFragments.fragment_3}>
+	<main>
+		<Hero
+			maintitle={tag}
+			secondarycontent={`${dataFragments.fragment_4} ${tag}`}
+		/>
+		<section class="container py-8">
+			<h2 class="sr-only">
+				{dataFragments.fragment_5}
+			</h2>
+			<ul class="projects">
+				{posts.map(project => (
+				  <ProjectListItem
+					key={project.id}
+					value={project.id}
+					linktoproject={project.slug}
+					title={project.data.title}
+					year={project.data.year}
+					url={project.data.url}
+					type={project.data.type}
+				  />
+				))}
+			</ul>
+		</section>
+	</main>
+</Layout>

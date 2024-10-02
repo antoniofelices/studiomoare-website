@@ -1,0 +1,26 @@
+---
+import Layout from '@layouts/layout-base.astro';
+import Hero from '@components/hero';
+
+import { getEntry } from 'astro:content';
+const dataRaw = await getEntry('static-data', 'page-404');
+const dataFragments = dataRaw.data;
+---
+
+<Layout title={dataFragments.fragment_1} includeFooter={false}>
+	<main class="h-lvh overflow-hidden">
+		<Hero
+			maintitle={dataFragments.fragment_1}
+			textintro={dataFragments.fragment_6}
+			secondarycontent={dataFragments.fragment_2}
+		/>
+		<div class="h-full pt-16 md:pt-24" style="background-image: url(/src/assets/images/bg-hero.webp)">
+			<section class="container">
+				<ul class="text-sm sm:text-l lg:text-2xl">
+					<li><a href={dataFragments.fragment_3}>&#x02190; {dataFragments.fragment_4}</a></li>
+					<li><a href="/" aria-label={dataFragments.fragment_5}>&#x02190; {dataFragments.fragment_5}</a></li>
+				</ul>
+			</section>
+		</div>
+	</main>
+</Layout>
