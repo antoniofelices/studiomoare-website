@@ -3,6 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	darkMode: 'selector',
 	theme: {
 		colors: {
 			transparent: 'transparent',
@@ -50,7 +51,6 @@ export default {
 			center: true,
 			padding: '1rem'
 		},
-		darkMode: ['selector', '[data-theme="dark"]'],
 		fontFamily: {
 			sans: ['geomanist', ...defaultTheme.fontFamily.sans],
 		},

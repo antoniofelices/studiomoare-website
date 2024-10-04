@@ -1,7 +1,7 @@
-import React from "react"
 import Logo from "./logo"
 import MainMenu from "./menu-main"
 import LangMenu from "./menu-lang"
+import ButtonToggle from "./button-toggle"
 
 const Header = ( props ) => {
 
@@ -17,10 +17,13 @@ const Header = ( props ) => {
 				<a href="/" aria-label={dataFragments.fragment_1}>
 					<Logo />
 				</a>
-				{includeMainMenu
-					? <MainMenu />
-					: <LangMenu />
-				}
+				<div className="flex content-center">
+					{includeMainMenu
+						? <MainMenu />
+						: <LangMenu />
+					}
+					<ButtonToggle />
+				</div>
 			</div>
 		</header>
 	)
