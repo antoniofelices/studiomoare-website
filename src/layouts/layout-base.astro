@@ -19,6 +19,7 @@ const { title,
 	} = Astro.props;
 
 const currentPath = Astro.url.pathname;
+
 ---
 
 <!doctype html>
@@ -35,13 +36,13 @@ const currentPath = Astro.url.pathname;
 		<meta property="og:locale" content={customLang}>
 		<meta property="og:title" content={title}>
 		<meta property="og:title" content={description}>
-		<meta property="og:url" content={currentPath}>
+		<meta property="og:url" content=`https://studiomoare.com${currentPath}`>
 		<meta property="og:site_name" content="Studio Moaré">
 		<meta property="og:image" content="https://studiomoare.com/studio-moare.webp">
-		<ViewTransitions />
+		<ViewTransitions fallback="swap" />
 	</head>
 	<body>
-		<Header includeMainMenu={mainMenu} client:load />
+		<Header includeMainMenu={mainMenu} client:only="react" />
 		<slot />
 		{includeFooter && <Footer />}
 	</body>
@@ -49,6 +50,9 @@ const currentPath = Astro.url.pathname;
 <style is:global>
 	body {
 		@apply text-m-blue bg-m-beige dark:text-m-beige dark:bg-m-blue;
+	}
+	body:has(button.navigation-open) {
+		overflow: hidden;
 	}
 	main a {
 		@apply border-b border-dotted;

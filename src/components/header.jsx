@@ -1,6 +1,6 @@
 import Logo from "./logo"
-import MainMenu from "./menu-main"
 import LangMenu from "./menu-lang"
+import MainNavigation from "./main-navigation"
 import ButtonToggle from "./button-toggle"
 
 const Header = ( props ) => {
@@ -18,11 +18,15 @@ const Header = ( props ) => {
 					<Logo />
 				</a>
 				<div className="flex content-center">
-					{includeMainMenu
-						? <MainMenu />
-						: <LangMenu />
-					}
-					<ButtonToggle />
+				{includeMainMenu &&
+					<MainNavigation />
+				}
+				{!includeMainMenu &&
+					<>
+						<LangMenu />
+						<ButtonToggle />
+					</>
+				}
 				</div>
 			</div>
 		</header>

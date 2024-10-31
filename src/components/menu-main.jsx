@@ -1,22 +1,20 @@
+import slugify from "@sindresorhus/slugify";
 
 const MainMenu = () => {
 
-	const dataFragments = {
-		"fragment_1": "Proyectos",
-		"fragment_2": "proyectos-desarrollo-web",
-		"fragment_3": "Contacto",
-		"fragment_4": "contacto"
-	}
+	const dataFragments = ["Proyectos", "Contacto"]
+
+	const path = window.location.pathname
+	const slug = path.replace(/\//g,'')
 
 	return(
-		<nav>
-			<ul className="flex gap-x-2 text-xs md:text-sm">
-				<li>
-					<a href={`/${dataFragments.fragment_2}`}>{dataFragments.fragment_1}</a>
-				</li>
-				<li>
-					<a href={`/${dataFragments.fragment_4}`}>{dataFragments.fragment_3}</a>
-				</li>
+		<nav className="mx-2">
+			<ul className="flex gap-x-2 flex-col md:flex-row text-4xl lg:text-sm">
+				{dataFragments.map((item) => (
+					<li key={item}>
+						<a href={`/${slugify(item)}`} className={slug === slugify(item) ? 'border-b border-dotted lg:pb-1' : '' }>{item}</a>
+					</li>
+				))}
 			</ul>
 		</nav>
 	)

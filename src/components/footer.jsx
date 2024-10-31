@@ -1,4 +1,4 @@
-import React from "react"
+import Logo from "./logo"
 
 const Footer = () => {
 
@@ -10,9 +10,12 @@ const Footer = () => {
 
 	return (
 		<footer className="grid place-items-center min-h-60">
-			<section className="container">
-				<div>
-					<h3>{dataFragments.fragment_1}</h3>
+			<section className="container flex justify-start items-center gap-x-3">
+				<a href="/" aria-label={dataFragments.fragment_1}>
+					<Logo height='2.5rem' />
+				</a>
+				<div className="">
+					<h3 className="text-sm">{dataFragments.fragment_1}</h3>
 					<address aria-label="Secondary Navigation" className="not-italic">
 						<span className="contact-info-mail">{dataFragments.fragment_3}</span><br/>
 					</address>
