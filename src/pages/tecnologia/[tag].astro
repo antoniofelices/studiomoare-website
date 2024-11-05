@@ -24,6 +24,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const postsOrder = posts.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
 ---
 
 <Layout title={dataFragments.fragment_3}>
@@ -37,7 +38,7 @@ const { posts } = Astro.props;
 				{dataFragments.fragment_5}
 			</h2>
 			<ul class="projects">
-				{posts.map(project => (
+				{postsOrder.map(project => (
 				  <ProjectListItem
 					key={project.id}
 					value={project.id}
