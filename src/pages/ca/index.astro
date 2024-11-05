@@ -1,6 +1,7 @@
 ---
 import Layout from '@layouts/layout-base.astro';
 import TextIntro from '@components/text-intro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import { getEntry } from 'astro:content';
 const dataRaw = await getEntry('static-data', 'page-index-ca');

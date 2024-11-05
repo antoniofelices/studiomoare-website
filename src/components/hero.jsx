@@ -1,5 +1,3 @@
-import React from "react"
-
 const Hero = ( props ) => {
   
 	const textintro = props.textintro ? props.textintro : 'Studio Moaré'

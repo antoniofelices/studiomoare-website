@@ -1,29 +1,28 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import {  getRelativeLocaleUrlList, getRelativeLocaleUrl } from 'astro:i18n';
 import Header from '@components/header';
 import Footer from '@components/footer';
 
 interface Props {
 	title: string;
-	customLang?: string;
 	description?: string;
 	includeFooter?: boolean;
 	mainMenu?: boolean;
 }
 
 const { title, 
-		customLang = "es-ES",
-		description="Un estudio de diseño y desarrollo web en Barcelona",
+		description = "Un estudio de diseño y desarrollo web en Barcelona",
 		includeFooter = true,
 		mainMenu = true
 	} = Astro.props;
 
 const currentPath = Astro.url.pathname;
-
+const { currentLocale } = Astro;
 ---
 
 <!doctype html>
-<html lang={customLang}>
+<html lang={currentLocale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -33,7 +32,7 @@ const currentPath = Astro.url.pathname;
 		<link rel="alternate" hreflang="ca-ES" href="https://studiomoare.com/ca">
 		<link rel="alternate" hreflang="es-ES" href="https://studiomoare.com/">
 		<title>{title} - Studio Moaré</title>
-		<meta property="og:locale" content={customLang}>
+		<meta property="og:locale" content={currentLocale}>
 		<meta property="og:title" content={title}>
 		<meta property="og:title" content={description}>
 		<meta property="og:url" content=`https://studiomoare.com${currentPath}`>

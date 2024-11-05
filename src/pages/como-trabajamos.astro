@@ -2,52 +2,43 @@
 import Layout from '@layouts/layout-base.astro';
 import Hero from '@components/hero';
 
-import { getEntry } from 'astro:content';
-const dataRaw = await getEntry('static-data', 'page-como-trabajamos');
-const dataFragments = dataRaw.data;
+// import { getEntry } from 'astro:content';
+// const dataRaw = await getEntry('static-data', 'page-como-trabajamos');
+// const dataFragments = dataRaw.data;
+
+const dataFragments = {
+	fragment_1: "Cómo trabajamos",
+	fragment_2: "Cómo transformamos ideas en realidad.",
+	fragment_3: "Studio Moaré nuestra fórmula para el éxito de un proyecto web: Descubre cómo transformamos ideas en realidad.",
+	fragment_4: "Descubre cómo transformamos ideas en realidad.",
+	fragment_5: "Escríbenos si tienes dudas, quieres información sobre nuestros servicios o simplemente quieres saludarnos",
+	list: [
+		"Análisis. Nos comentas tu idea.",
+		"Propuesta. Hacemos un presupuesto a partir de lo hablado.",
+		"Si lo apruebas, creamos un entorno de pruebas para que en todo momento veas y compartas el proceso.",
+		"Implementamos las funcionalidades acordadas y la arquitectura de la información en el entorno de pruebas.",
+		"Hacemos e implementamos una propuesta de diseño.",
+		"Importamos el contenido. Sera una importación masiva de textos e imágenes.",
+		"Repasamos las pantallas acordadas en el presupuesto. Suelen ser las pantallas mas importantes como la pantalla de inicio o quienes somos, etc.",
+		"Te creamos unos videos de formación explicándote el funcionamiento de tu nuevo sitio. Luego de ver los videos, podrás manipular todo el contenido del mismo.",
+		"Movemos el sitio a un entorno de producción. Te asesoramos al contratar un proveedor de hosting.",
+		"Hacemos pruebas de todo, comprobamos que funciona, damos tu sitio de alta en diferentes servicios y aplicaciones.",
+		"Y si quieres… hacemos el mantenimiento de tu sitio."
+	]
+}
 ---
 
-<Layout title={dataFragments.fragment_15} description="Escribenos si tienes dudas, quieres información sobre nuestros servicios o simplemente quieres saludarnos">
+<Layout title={dataFragments.fragment_1} description={dataFragments.fragment_5}>
 	<main>
 		<Hero
-			maintitle={dataFragments.fragment_15}
-			secondarycontent={dataFragments.fragment_3}
+			maintitle={dataFragments.fragment_1}
+			secondarycontent={dataFragments.fragment_4}
 		/>
 		<div class="container py-4">
 			<ul class="text-sm sm:text-l list-decimal ml-6">
-				<li>
-				{dataFragments.fragment_4}
-				</li>
-				<li>
-				{dataFragments.fragment_5}
-				</li>
-				<li>
-				{dataFragments.fragment_6}
-				</li>
-				<li>
-				{dataFragments.fragment_7}
-				</li>
-				<li>
-				{dataFragments.fragment_8}
-				</li>
-				<li>
-				{dataFragments.fragment_9}
-				</li>
-				<li>
-				{dataFragments.fragment_10}
-				</li>
-				<li>
-				{dataFragments.fragment_11}
-				</li>
-				<li>
-				{dataFragments.fragment_12}
-				</li>
-				<li>
-				{dataFragments.fragment_13}
-				</li>
-				<li>
-				{dataFragments.fragment_14}
-				</li>
+				{dataFragments.list.map((item) => (
+					<li>{item}</li>
+				))}
 			</ul>
 		</div>
 	</main>

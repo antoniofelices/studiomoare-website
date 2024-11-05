@@ -1,0 +1,38 @@
+---
+import Layout from '@layouts/layout-base.astro';
+import Hero from '@components/hero';
+import ProjectListItem from '@components/project-list-item';
+
+import { getEntry, getCollection } from 'astro:content';
+const dataRaw = await getEntry('static-data', 'page-projectes-desenvolupament-web');
+const dataFragments = dataRaw.data;
+const projectsRaw = await getCollection('projects');
+const projects = projectsRaw.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
+---
+
+<Layout title={dataFragments.fragment_3} description="Proyectos de diseño y desarrollo web usando WordPress, Vite, Astro, Gatsby">
+	<main>
+		<Hero
+			maintitle={dataFragments.fragment_3}
+			secondarycontent={dataFragments.fragment_4}
+		/>
+		<section class="container py-4">
+			<h2 class="sr-only">
+				{dataFragments.fragment_5}
+			</h2>
+			<ul class="projects">
+				{projects.map(project => (
+				  <ProjectListItem
+					key={project.id}
+					value={project.id}
+					linktoproject={project.slug}
+					title={project.data.title}
+					year={project.data.year}
+					url={project.data.url}
+					type={project.data.type}
+				  />
+				))}
+			</ul>
+		</section>
+	</main>
+</Layout>

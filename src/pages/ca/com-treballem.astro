@@ -1,0 +1,42 @@
+---
+import Layout from '@layouts/layout-base.astro';
+import Hero from '@components/hero';
+
+const dataFragments = {
+	fragment_1: "Com treballem",
+	fragment_2: "Com transformem idees en realitat.",
+	fragment_3: "Studio Moaré la nostra fórmula per a l'èxit d'un projecte web: Descobreix com transformem idees en realitat.",
+	fragment_4: "Descobreix com transformem idees en realitat.",
+	fragment_5: "Escriu-nos si tens dubtes, vols informació sobre els nostres serveis o simplement vols saludar-nos",
+	list: [
+		"Análisis. Ens comentes la teva idea.",
+		"Propuesta. Fem un pressupost a partir del parlat.",
+		"Si ho aproves, creem un entorn de proves perquè en tot moment vegis i comparteixis el procés.",
+		"Implementem les funcionalitats acordades i l'arquitectura de la informació a l'entorn de proves.",
+		"Fem i implementem una proposta de disseny.",
+		"Importem el contingut. Sàrria una importació massiva de textos i imatges.",
+		"Repassem les pantalles acordades en el pressupost. Solen ser les pantalles mes importants com la pantalla d'inici o els qui som, etc.",
+		"Et creem uns vídeos de formació explicant-te el funcionament del teu nou lloc. Després de veure els vídeos, podràs manipular tot el contingut d'aquest.",
+		"Movem el lloc a un entorn de producció. T'assessorem en contractar un proveïdor de hosting.",
+		"Testem tot, comprovem que tot funciona, donem el teu lloc d'alta en diferents serveis i aplicacions.",
+		"I si vols… fem el manteniment del teu lloc."
+	]
+}
+---
+
+<Layout title={dataFragments.fragment_1} description={dataFragments.fragment_5}>
+	<main>
+		<Hero
+			maintitle={dataFragments.fragment_1}
+			secondarycontent={dataFragments.fragment_4}
+		/>
+		<div class="container py-4">
+			<ul class="text-sm sm:text-l list-decimal ml-6">
+				{dataFragments.list.map((item) => (
+					<li>{item}</li>
+				))}
+			</ul>
+		</div>
+	</main>
+</Layout>
+

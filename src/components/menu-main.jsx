@@ -1,4 +1,4 @@
-import slugify from "@sindresorhus/slugify";
+import slugify from '@sindresorhus/slugify'
 
 const MainMenu = () => {
 
