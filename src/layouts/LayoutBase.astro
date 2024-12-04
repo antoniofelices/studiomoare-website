@@ -1,8 +1,8 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import {  getRelativeLocaleUrlList, getRelativeLocaleUrl } from 'astro:i18n';
-import Header from '@components/header';
-import Footer from '@components/footer';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 
 interface Props {
 	title: string;
@@ -38,14 +38,15 @@ const { currentLocale } = Astro;
 		<meta property="og:url" content=`https://studiomoare.com${currentPath}`>
 		<meta property="og:site_name" content="Studio Moaré">
 		<meta property="og:image" content="https://studiomoare.com/studio-moare.webp">
-		<ViewTransitions fallback="swap" />
+		<ViewTransitions />
 	</head>
 	<body>
-		<Header includeMainMenu={mainMenu} client:only="react" />
+		<Header includeMainMenu={mainMenu} />
 		<slot />
 		{includeFooter && <Footer />}
 	</body>
 </html>
+
 <style is:global>
 	body {
 		@apply text-m-blue bg-m-beige dark:text-m-beige dark:bg-m-blue;
@@ -57,3 +58,37 @@ const { currentLocale } = Astro;
 		@apply border-b border-dotted;
 	}
 </style>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const containerNavMobile = document.getElementById("container-navigation") as HTMLElement;
+		const iconClose = document.querySelector(".close") as HTMLElement;
+		const iconOpen = document.querySelector(".open") as HTMLElement;
+		const body = document.body;
+		if(containerNavMobile) {
+			document.addEventListener("click", (event) => {
+				const target = event.target as HTMLElement;
+				if (target.closest(".mobile-dropdown-toggle")) {
+					containerNavMobile.classList.toggle("hidden");
+					iconClose.classList.toggle("hidden");
+					iconOpen.classList.toggle("hidden");
+					body.classList.toggle("h-dvh");
+					body.classList.toggle("overflow-y-hidden");
+				}
+			});
+			document.addEventListener("click", (event) => {
+				const target = event.target as HTMLElement;
+				if ( !target.closest("#container-navigation") && !target.closest(".mobile-dropdown-toggle") ) {
+					if (!containerNavMobile.classList.contains("hidden")) {
+						containerNavMobile.classList.add("hidden");
+						iconClose.classList.add("hidden");
+						iconOpen.classList.remove("hidden");
+						body.classList.remove("overflow-y-hidden");
+						body.classList.remove("h-dvh");
+					}
+				}
+				
+			});
+		}
+	});
+</script>

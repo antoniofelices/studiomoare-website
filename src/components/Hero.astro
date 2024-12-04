@@ -1,0 +1,17 @@
+---
+const textintro = Astro.props.textintro ? Astro.props.textintro : 'Studio Moaré'
+const maintitle = Astro.props.maintitle
+const secondarycontent = Astro.props.secondarycontent
+---
+
+<section class="grid place-items-center pt-44 pb-16 lg:pt-48 lg:pb-24">
+	<div class="container">
+		<div class="max-w-2xl">
+			<p class="text-xs text-m-orange">{textintro}</p>
+			<h1 class="text-4xl sm:text-6xl lg:text-8xl py-4">{maintitle}</h1>
+			{secondarycontent &&
+				<p class="text-sm sm:text-l lg:text-2xl">{secondarycontent}</p>
+			}
+		</div>
+	</div>
+</section>

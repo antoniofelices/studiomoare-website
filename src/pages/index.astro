@@ -1,6 +1,6 @@
 ---
-import Layout from '@layouts/layout-base.astro';
-import TextIntro from '@components/text-intro';
+import Layout from '@layouts/LayoutBase.astro';
+import TextIntro from '@components/TextIntro.astro';
 
 import { getEntry } from 'astro:content';
 const dataRaw = await getEntry('static-data', 'page-index-es');
@@ -8,7 +8,7 @@ const dataFragments = dataRaw.data;
 ---
 
 <Layout title={dataFragments.fragment_4} includeFooter={false} mainMenu={false}>
-	<main class="h-lvh overflow-hidden bg-no-repeat bg-cover bg-center" style="background-image: url(/studio-moare-02.svg);">
+	<main class="h-dvh overflow-hidden bg-no-repeat bg-cover bg-center" style="background-image: url(/studio-moare-02.svg);">
 		<div class="container">
 			<div class="grid place-items-center h-screen">
 				<TextIntro

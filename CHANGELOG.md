@@ -1,5 +1,18 @@
 # Studio Moare Website Changelog
 
+## [1.0.3] - 2024-12-04
+### Add
+- Configuration i18n.
+- Language Picker component.
+
+### Changed
+- File names PascalCase.
+- Footer, Header, Hero, LayoutBase, Logo, MainMenu, ProjectListItem, ProjectMetaInfo, TextIntro from jsx to astro.
+- Rename ButtonToggle to ButtonToggleDarkMode component.
+
+### Removed
+- image-moare.jsx file.
+
 ## [1.0.2] - 2024-11-05
 ### Add
 - Test i18n.

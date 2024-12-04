@@ -1,7 +1,7 @@
 ---
-import Layout from '@layouts/layout-base.astro';
-import Hero from '@components/hero';
-import ProjectListItem from '@components/project-list-item';
+import Layout from '@layouts/LayoutBase.astro';
+import Hero from '@components/Hero.astro';
+import ProjectListItem from '@components/ProjectListItem.astro';
 
 import { getEntry, getCollection } from 'astro:content';
 const dataRaw = await getEntry('static-data', 'page-proyectos-desarrollo-web');
@@ -10,7 +10,7 @@ const projectsRaw = await getCollection('projects');
 const projects = projectsRaw.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
 ---
 
-<Layout title={dataFragments.fragment_3} description="Proyectos de diseño y desarrollo web usando WordPress, Vite, Astro, Gatsby">
+<Layout title={dataFragments.fragment_3} description={dataFragments.fragment_6}>
 	<main>
 		<Hero
 			maintitle={dataFragments.fragment_3}

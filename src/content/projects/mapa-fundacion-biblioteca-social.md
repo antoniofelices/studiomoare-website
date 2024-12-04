@@ -14,7 +14,7 @@ url: http://mapa.fundacionbibliotecasocial.org/
 year: 2020
 ---
 
-Webapp que carga contenido desde un WordPress.
+Webapp que consume datos de un WordPress, usando la Rest API de este último.
 
 - Backend: WordPress.
 - Frontend: Gatsby framework.

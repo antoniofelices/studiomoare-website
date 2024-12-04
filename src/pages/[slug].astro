@@ -1,7 +1,7 @@
 ---
-import Layout from '@layouts/layout-base.astro';
-import Hero from '@components/hero';
-import ProjectMetaInfo from '@components/project-meta-info';
+import Layout from '@layouts/LayoutBase.astro';
+import Hero from '@components/Hero.astro';
+import ProjectMetaInfo from '@components/ProjectMetaInfo.astro';
 import { getEntry, getCollection } from 'astro:content';
 export async function getStaticPaths() {
 	const projects = await getCollection('projects');

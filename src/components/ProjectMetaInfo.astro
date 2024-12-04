@@ -1,0 +1,19 @@
+---
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const translateString = useTranslations(lang);
+
+const year = Astro.props.year
+const client = Astro.props.client
+const url = Astro.props.url
+---
+
+<ul class="sm:flex gap-x-4 text-xs lg:text-sm">
+	<li class="sm:flex flex-col"><span>{translateString('projectYear')}</span> {year}</li>
+	<li class="sm:flex flex-col"><span>{translateString('projectCustomer')}</span> {client}</li>
+	{url
+	? <li class="sm:flex flex-col"><span>{translateString('projectURL')}</span> <a href={url} rel="noopener noreferrer" target="_blank">{url}</a></li>
+	: <li>&#x000D7; {translateString('projectOffLine')}.</li>
+	}
+</ul>
