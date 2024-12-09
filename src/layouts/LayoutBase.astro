@@ -1,6 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import {  getRelativeLocaleUrlList, getRelativeLocaleUrl } from 'astro:i18n';
+import { ClientRouter } from 'astro:transitions';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 
@@ -38,7 +37,7 @@ const { currentLocale } = Astro;
 		<meta property="og:url" content=`https://studiomoare.com${currentPath}`>
 		<meta property="og:site_name" content="Studio Moaré">
 		<meta property="og:image" content="https://studiomoare.com/studio-moare.webp">
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body>
 		<Header includeMainMenu={mainMenu} />

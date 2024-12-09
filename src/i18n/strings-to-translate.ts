@@ -9,7 +9,12 @@ export const stringToTranslate = {
     projectCustomer: 'Cliente',
     projectOffLine: 'No disponible en línea',
     projectURL: 'URL',
-    projectYear: 'Año'
+    projectYear: 'Año',
+    formName: 'Nombre',
+    formEmail: 'Email',
+    formMessage: 'Mensaje',
+    formQuote: 'Presupuesto',
+    formSend: 'Enviar'
 
   },
   ca: {
@@ -22,6 +27,11 @@ export const stringToTranslate = {
     projectCustomer: 'Client',
     projectOffLine: 'No disponible en línia',
     projectURL: 'URL',
-    projectYear: 'Any'
+    projectYear: 'Any',
+    formName: 'Nom',
+    formEmail: 'Correu electrònic',
+    formMessage: 'Missatge',
+    formQuote: 'Pressupost',
+    formSend: 'Envia'
   },
 };

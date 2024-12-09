@@ -16,6 +16,6 @@ WordPress Multisitio.
 
 Creación tipos de contenido y taxonomías personalizadas, validación de formularios. Desarrollo de tema a medida usando bloques. Siguiendo el mismo esquelo cree otros sitios: https://coalicionsumar.es, https://movementosumargalicia.gal/, https://sumarmugimendua.eus/
 
-Diseño: Lara Laguna
+Diseño inicial: Lara Laguna
 
 ![pantalla inicial escritorio](../../assets/images-projects/sumar-inicio-00.webp)

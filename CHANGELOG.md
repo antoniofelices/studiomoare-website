@@ -1,5 +1,16 @@
 # Studio Moare Website Changelog
 
+## [1.0.4] - 2024-12-09
+### Add
+- Contact Form.
+- Type scale, font sizes.
+
+### Changed
+- Update Astro and dependencies.
+
+### Removed
+- React responsive package.
+
 ## [1.0.3] - 2024-12-04
 ### Add
 - Configuration i18n.
