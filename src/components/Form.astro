@@ -5,25 +5,25 @@ const translateString = useTranslations(lang);
 ---
 
 <div class="w-full">
-	<form action="https://getform.io/f/02629278-66f9-4224-9ec1-4c5d00761ed1" class="rounded" method="POST">
-		<div class="mb-4">
+	<form action="https://getform.io/f/02629278-66f9-4224-9ec1-4c5d00761ed1" class="rounded-sm" method="POST">
+		<div class="mb-4 ">
 			<label class="block text-sm font-bold mb-2" for="form-name">
 				{translateString('formName')}
 			</label>
-			<input class="appearance-none border rounded w-full py-2 px-3 text-m-blue focus:outline-none focus:shadow-outline" id="form-name" type="text" name="name" required>
+			<input class="appearance-none bg-m-beige border rounded-sm w-full py-2 px-3 text-m-blue focus:outline-hidden focus:shadow-outline" id="form-name" type="text" name="name" required>
 		</div>
 		<div class="mb-4">
 			<label class="block text-sm font-bold mb-2" for="form-email">
 				{translateString('formEmail')}
 			</label>
-			<input class="appearance-none border rounded w-full py-2 px-3 text-m-blue focus:outline-none focus:shadow-outline" id="form-mail" type="email" name="email" required>
+			<input class="appearance-none bg-m-beige border rounded-sm w-full py-2 px-3 text-m-blue focus:outline-hidden focus:shadow-outline" id="form-mail" type="email" name="email" required>
 		</div>
 		<div class="mb-4">
 			<label class="block text-sm font-bold mb-2" for="form-quote">
 				{translateString('formQuote')}
 			</label>
 			<div class="inline-block relative w-full">
-				<select class="block appearance-none appearance-none border rounded w-full py-2 px-3 text-m-blue focus:outline-none focus:shadow-outline" id="form-quote" name="quote" required>
+				<select class="block appearance-none bg-m-beige border rounded-sm w-full py-2 px-3 text-m-blue focus:outline-hidden focus:shadow-outline" id="form-quote" name="quote" required>
 					<option value="basic">2000€</option>
 					<option value="medium">2000 - 5000€</option>
 					<option value="business">+5000€</option>
@@ -38,9 +38,9 @@ const translateString = useTranslations(lang);
 			<label class="block text-sm font-bold mb-2" for="form-message">
 				{translateString('formMessage')}
 			</label>
-			<textarea class="appearance-none border rounded w-full py-2 px-3 text-m-blue focus:outline-none focus:shadow-outline" name="message" id="form-message" minlength="20"></textarea>
+			<textarea class="appearance-none border rounded-sm w-full py-2 px-3 text-m-blue focus:outline-hidden focus:shadow-outline" name="message" id="form-message" minlength="20"></textarea>
 		</div>
-		<button type="submit" class="text-white bg-m-orange rounded hover:bg-m-blue-600 focus:outline-none font-medium dark:bg-m-orange text-xs lg:text-sm px-5 py-2.5 my-2 w-full">
+		<button type="submit" class="text-white bg-m-orange rounded-sm hover:bg-m-blue-600 focus:outline-hidden font-medium dark:bg-m-orange text-xs lg:text-sm px-5 py-2.5 my-2 w-full">
 			{translateString('formSend')}
 		</button>
 	</form>

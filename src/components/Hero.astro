@@ -6,11 +6,11 @@ const secondarycontent = Astro.props.secondarycontent
 
 <section class="grid place-items-center pt-44 pb-16 lg:pt-42 2xl:pt-48 2xl:pb-20">
 	<div class="container">
-		<div class="max-w-2xl 2xl:max-w-screen-xl">
+		<div class="max-w-2xl 2xl:max-w-(--breakpoint-xl)">
 			<p class="text-xs text-m-orange">{textintro}</p>
-			<h1 class="text-4xl text-6xl md:text-9xl lg:text-11xl 2xl:text-18xl py-4 font-bold">{maintitle}</h1>
+			<h1 class="text-6xl md:text-9xl lg:text-11xl 2xl:text-18xl py-4 font-bold">{maintitle}</h1>
 			{secondarycontent &&
-				<p class="text-sm sm:text-l 2xl:text-2xl mt-4">{secondarycontent}</p>
+				<p class="mt-4">{secondarycontent}</p>
 			}
 		</div>
 	</div>
