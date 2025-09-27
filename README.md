@@ -1,5 +1,5 @@
-# Studio Moaré website
+# Studio Moare website
 
-- Astro.
-- React.
-- Tailwind.
+-   Astro.
+-   React.
+-   Tailwind.

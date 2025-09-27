@@ -1,11 +1,12 @@
 ---
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
 const lang = getLangFromUrl(Astro.url);
+const GETFORMSKEY = import.meta.env.VITE_GETFORM_KEY;
 const translateString = useTranslations(lang);
 ---
 
 <div class="w-full">
-	<form action="https://getform.io/f/02629278-66f9-4224-9ec1-4c5d00761ed1" class="rounded-sm" method="POST">
+	<form action=`https://getform.io/f/${GETFORMSKEY}` class="rounded-sm" method="POST">
 		<div class="mb-4 ">
 			<label class="block text-sm font-bold mb-2" for="form-name">
 				{translateString('formName')}
