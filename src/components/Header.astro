@@ -4,10 +4,8 @@ import MainMenu from './MenuMain.astro'
 import LanguagePicker from './LanguagePicker.astro'
 import ButtonToggleDarkMode from './ButtonToggleDarkMode.jsx'
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
-
 const lang = getLangFromUrl(Astro.url);
 const translateString = useTranslations(lang);
-
 const includeMainMenu = Astro.props.includeMainMenu;
 ---
 
