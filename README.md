@@ -1,11 +1,12 @@
 <div align="center">
     <h1>Studio Moare website</h1>
-    <p>This is our website, where we showcase some of our projects and the services we offer, as well as providing a way to contact us. It is built using Astro, React and Tailwind. It is a multilingual website using i18n for translations.</p>
+    <br/><br/>
+    <p>This is our website, where we showcase some of our projects and the services we offer, as well as providing a way to contact us.<br/>It is built using Astro, React and Tailwind. It is a multilingual website using i18n for translations.</p>
+    <br/><br/>
 </div>
 
 <div align="center">
-    <img src="src/assets/images/preview-01.webp" alt="Preview" width="400"/>
-    <img src="src/assets/images/preview-02.webp" alt="Preview" width="400"/>
+    <img src="src/assets/images/preview-02.webp" alt="Preview" />
 </div>
 
 ---
