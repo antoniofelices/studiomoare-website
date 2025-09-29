@@ -1,7 +1,7 @@
 <div align="center">
-    <h1>Studio Moare website</h1>
+    <h1>Studio Moare Website</h1>
     <br/><br/>
-    <p>This is our website, where we showcase some of our projects and the services we offer, as well as providing a way to contact us.<br/>It is built using Astro, React and Tailwind. It is a multilingual website using i18n for translations.</p>
+    <p><strong>This is our website</strong><br/>It showcases some of our projects and the services we offer, and providing a way to contact us.<br/>It is built using Astro, React and Tailwind. It is a multilingual website using i18n for translations.</p>
     <br/><br/>
 </div>
 
