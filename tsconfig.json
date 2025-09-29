@@ -6,11 +6,12 @@
         "allowJs": true,
         "baseUrl": ".",
         "paths": {
+            "@assets/*": ["src/assets/*"],
             "@components/*": ["src/components/*"],
+            "@hooks/*": ["src/hooks/*"],
             "@i18n/*": ["src/i18n/*"],
             "@layouts/*": ["src/layouts/*"],
-            "@assets/*": ["src/assets/*"],
-            "@hooks/*": ["src/hooks/*"]
+            "@styles/*": ["src/styles/*"]
         },
         "jsx": "react-jsx",
         "jsxImportSource": "react"

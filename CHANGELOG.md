@@ -1,10 +1,16 @@
 # Studio Moare Website Changelog
 
-## [1.0.6] - 2025-09-XX
+## [1.0.6] - 2025-09-29
+
+### Add
+
+-   Add prettier.
+-   Filtering projects by tag.
 
 ### Changed
 
 -   Update dependencies.
+-   Update readme file.
 
 ## [1.0.5] - 2025-04-08
 

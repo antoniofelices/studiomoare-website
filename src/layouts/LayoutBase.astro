@@ -1,23 +1,25 @@
 ---
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
 import { ClientRouter } from 'astro:transitions';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
-import '../styles/fonts.css';
-import '../styles/global.css';
+import '@styles/fonts.css';
+import '@styles/global.css';
 
 interface Props {
-	title: string;
-	description?: string;
-	includeFooter?: boolean;
-	mainMenu?: boolean;
+	title: string
+	includeFooter?: boolean
+	mainMenu?: boolean
 }
 
-const { title, 
-		description = "Un estudio de diseño y desarrollo web en Barcelona",
-		includeFooter = true,
-		mainMenu = true
-	} = Astro.props;
+const {
+	title,
+	includeFooter = true,
+	mainMenu = true
+} = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
+const translateString = useTranslations(lang);
 const currentPath = Astro.url.pathname;
 const { currentLocale } = Astro;
 ---
@@ -26,18 +28,18 @@ const { currentLocale } = Astro;
 <html lang={currentLocale}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
+		<meta name="description" content={translateString('description')} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="alternate" hreflang="ca-ES" href="https://studiomoare.com/ca">
 		<link rel="alternate" hreflang="es-ES" href="https://studiomoare.com/">
-		<title>{title} - Studio Moaré</title>
+		<title>{title} - {translateString('title')}</title>
 		<meta property="og:locale" content={currentLocale}>
-		<meta property="og:title" content={title}>
-		<meta property="og:title" content={description}>
+		<meta property="og:title" content={translateString('title')}>
+		<meta property="og:title" content={translateString('description')}>
 		<meta property="og:url" content=`https://studiomoare.com${currentPath}`>
-		<meta property="og:site_name" content="Studio Moaré">
+		<meta property="og:site_name" content={translateString('title')}>
 		<meta property="og:image" content="https://studiomoare.com/studio-moare.webp">
 		<ClientRouter />
 	</head>
