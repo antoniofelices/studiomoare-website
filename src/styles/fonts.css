@@ -1,26 +1,24 @@
 @font-face {
-    font-family: "geomanist";
+    font-family: 'geomanist';
     font-style: normal;
     font-weight: 700;
     font-display: block;
-    src: url(/fonts/geomanist/geomanist-bold-webfont.woff2) format("woff2"),
-            url(/fonts/geomanist/geomanist-bold-webfont.woff) format("woff");
+    src: url(/fonts/geomanist/geomanist-bold-webfont.woff2) format('woff2');
 }
 
 @font-face {
-    font-family: "geomanist";
+    font-family: 'geomanist';
     font-style: normal;
     font-weight: 400;
     font-display: block;
-    src: url(/fonts/geomanist/geomanist-regular-webfont.woff2) format("woff2"),
-            url(/fonts/geomanist/geomanist-regular-webfont.woff) format("woff");
+    src: url(/fonts/geomanist/geomanist-regular-webfont.woff2) format('woff2');
 }
 
 @font-face {
-    font-family: "geomanist";
+    font-family: 'geomanist';
     font-style: normal;
     font-weight: 200;
     font-display: block;
-    src: url(/fonts/geomanist/geomanist-extralight-webfont.woff2) format("woff2"),
-            url(/fonts/geomanist/geomanist-extralight-webfont.woff) format("woff");
+    src: url(/fonts/geomanist/geomanist-extralight-webfont.woff2)
+        format('woff2');
 }

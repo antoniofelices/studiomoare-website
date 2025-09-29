@@ -1,7 +1,6 @@
 ---
 import Layout from '@layouts/LayoutBase.astro';
 import TextIntro from '@components/TextIntro.astro';
-
 import { getEntry } from 'astro:content';
 const dataRaw = await getEntry('static-data', 'page-index-es');
 const dataFragments = dataRaw.data;
