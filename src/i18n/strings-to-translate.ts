@@ -16,6 +16,8 @@ export const stringToTranslate = {
         formQuote: 'Presupuesto',
         formSend: 'Enviar',
         all: 'Todos',
+        title: 'Studio Moare',
+        description: 'Un estudio de diseño y desarrollo web en Barcelona',
     },
     ca: {
         navHome: 'Inici',
@@ -34,5 +36,7 @@ export const stringToTranslate = {
         formQuote: 'Pressupost',
         formSend: 'Envia',
         all: 'Tots',
+        title: 'Studio Moare',
+        description: 'Un estudi de disseny i desenvolupament web a Barcelona',
     },
 }
