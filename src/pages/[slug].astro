@@ -4,32 +4,39 @@ import Hero from '@components/Hero.astro';
 import ProjectMetaInfo from '@components/ProjectMetaInfo.astro';
 import { getEntry, getCollection } from 'astro:content';
 export async function getStaticPaths() {
-	const projects = await getCollection('projects');
-	return projects.map((entry) => {
+	const allProjects = await getCollection('projects');
+	
+	const esProjects = allProjects.filter(project => 
+		project.slug.endsWith('/es')
+	);
+	
+	return esProjects.map(project => {
+		const slug = project.slug.replace('/es', '');
+		
 		return {
-			params: { slug: entry.slug },
-			props: { entry },
+			params: { slug },
+			props: { project },
 		};
 	});
 };
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { project } = Astro.props;
+const { Content } = await project.render();
 const dataRaw = await getEntry('static-data', 'template-proyecto');
 const dataFragments = dataRaw.data;
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={project.data.title}>
 	<main>
 		<Hero
 			textintro='Proyecto'
-			maintitle={entry.data.title}
+			maintitle={project.data.title}
 		/>
 		<section class="container py-8">
 			<aside>
 				<ProjectMetaInfo
-					client={entry.data.client}
-					url={entry.data.url}
-					year={entry.data.year}
+					client={project.data.client}
+					url={project.data.url}
+					year={project.data.year}
 				/>
 			</aside>
 			<div class="pt-6">

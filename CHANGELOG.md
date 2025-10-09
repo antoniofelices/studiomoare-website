@@ -1,5 +1,15 @@
 # Studio Moare Website Changelog
 
+## [1.0.7] - 2025-10-XX
+
+### Add
+
+-   MDX.
+
+### Changed
+
+-   Folder structure.
+
 ## [1.0.6] - 2025-09-29
 
 ### Add

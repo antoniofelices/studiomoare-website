@@ -3,6 +3,8 @@ import react from '@astrojs/react'
 import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://studiomoare.com',
@@ -13,7 +15,7 @@ export default defineConfig({
             prefixDefaultLocale: false,
         },
     },
-    integrations: [react(), icon()],
+    integrations: [react(), icon(), mdx()],
     vite: {
         plugins: [tailwindcss()],
     },
