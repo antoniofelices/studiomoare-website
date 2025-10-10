@@ -1,14 +1,17 @@
-import { useTranslations } from '@i18n/utils'
+import { useTranslations, getLangFromUrl } from '@i18n/utils'
 
 const ProjectListItem = ({ linktoproject, title, type, year, url }) => {
-    const translateString = useTranslations('es')
+    const lang = getLangFromUrl(window.location)
+    const translateString = useTranslations(lang)
+    const linktoProjectRaw = linktoproject || ''
+    const projectURL = linktoProjectRaw.replace('/es', '')
 
     return (
         <>
             <li className="py-4 border-b border-m-gray-300 dark:border-m-blue-800">
                 <h3 className="text-l sm:text-xl lg:text-2xl">
                     <a
-                        href={`/${linktoproject}`}
+                        href={`/${projectURL}`}
                         rel="bookmark"
                         className="border-none"
                     >

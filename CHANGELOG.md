@@ -5,6 +5,7 @@
 ### Add
 
 -   MDX.
+-   Content projects catala.
 
 ### Changed
 

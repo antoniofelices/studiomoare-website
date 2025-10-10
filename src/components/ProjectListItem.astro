@@ -4,11 +4,12 @@ import { getLangFromUrl, useTranslations } from '@i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const translateString = useTranslations(lang);
 
-const linktoproject = Astro.props.linktoproject
-const title = Astro.props.title
-const type = Astro.props.type
-const year = Astro.props.year
-const url = Astro.props.url
+const linktoprojectRaw = Astro.props.linktoproject;
+const linktoproject = linktoprojectRaw.replace('/es', '');
+const title = Astro.props.title;
+const type = Astro.props.type;
+const year = Astro.props.year;
+const url = Astro.props.url;
 ---
 
 <li class="py-4 border-b border-m-gray-300 dark:border-m-blue-800">

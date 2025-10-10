@@ -1,7 +1,8 @@
-import { useTranslations } from '@i18n/utils'
+import { useTranslations, getLangFromUrl } from '@i18n/utils'
 
 const FilterProjects = ({ onWordPress, onReact, onAll }) => {
-    const translateString = useTranslations('es')
+    const lang = getLangFromUrl(window.location)
+    const translateString = useTranslations(lang)
 
     return (
         <div className="flex gap-4 mb-6 items-center lg:justify-end">

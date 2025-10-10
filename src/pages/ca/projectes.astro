@@ -1,13 +1,11 @@
 ---
 import Layout from '@layouts/LayoutBase.astro';
 import Hero from '@components/Hero.astro';
-import ProjectListItem from '@components/ProjectListItem.astro';
-
 import { getEntry, getCollection } from 'astro:content';
 const dataRaw = await getEntry('static-data', 'page-projectes-desenvolupament-web');
 const dataFragments = dataRaw.data;
 const projectsRaw = await getCollection('projects');
-const projects = projectsRaw.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
+import ProjectList from '@components/ProjectList.jsx';
 ---
 
 <Layout title={dataFragments.fragment_3} description={dataFragments.fragment_6}>
@@ -20,19 +18,7 @@ const projects = projectsRaw.sort((a, b) => b.data.sortOrder - a.data.sortOrder)
 			<h2 class="sr-only">
 				{dataFragments.fragment_5}
 			</h2>
-			<ul class="projects">
-				{projects.map(project => (
-				  <ProjectListItem
-					key={project.id}
-					value={project.id}
-					linktoproject={project.slug}
-					title={project.data.title}
-					year={project.data.year}
-					url={project.data.url}
-					type={project.data.type}
-				  />
-				))}
-			</ul>
+			<ProjectList projectsRaw={projectsRaw} client:only="react" />
 		</section>
 	</main>
 </Layout>
