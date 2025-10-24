@@ -3,21 +3,14 @@ import Layout from '@layouts/LayoutBase.astro';
 import Hero from '@components/Hero.astro';
 import ProjectMetaInfo from '@components/ProjectMetaInfo.astro';
 import { getEntry, getCollection } from 'astro:content';
+import { filterByLocale } from '@utils/collections';
 export async function getStaticPaths() {
-	const allProjects = await getCollection('projects');
-	
-	const esProjects = allProjects.filter(project => 
-		project.slug.endsWith('/es')
-	);
-	
-	return esProjects.map(project => {
-		const slug = project.slug.replace('/es', '');
-		
-		return {
-			params: { slug },
-			props: { project },
-		};
-	});
+	const projects = await getCollection('projects');
+	const esProjects = filterByLocale(projects, 'es');
+	return esProjects.map(project => ({
+		params: { slug: project.slug },
+		props: { project },
+	}));
 };
 const { project } = Astro.props;
 const { Content } = await project.render();
@@ -52,7 +45,3 @@ const dataFragments = dataRaw.data;
       </section>
 	</main>
 </Layout>
-
-<style is:global>
-
-</style>

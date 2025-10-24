@@ -4,7 +4,11 @@ const ProjectListItem = ({ linktoproject, title, type, year, url }) => {
     const lang = getLangFromUrl(window.location)
     const translateString = useTranslations(lang)
     const linktoProjectRaw = linktoproject || ''
-    const projectURL = linktoProjectRaw.replace('/es', '')
+    const projectURL =
+        {
+            es: linktoProjectRaw,
+            ca: `ca/${linktoProjectRaw}`,
+        }[lang] ?? linktoProjectRaw
 
     return (
         <>

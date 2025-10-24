@@ -2,9 +2,11 @@
 import Layout from '@layouts/LayoutBase.astro';
 import Hero from '@components/Hero.astro';
 import { getEntry, getCollection } from 'astro:content';
+import { filterByLocale } from '@utils/collections';
 const dataRaw = await getEntry('static-data', 'page-projectes-desenvolupament-web');
 const dataFragments = dataRaw.data;
-const projectsRaw = await getCollection('projects');
+const projects = await getCollection('projects');
+const projectsRaw = filterByLocale(projects, 'ca');
 import ProjectList from '@components/ProjectList.jsx';
 ---
 
