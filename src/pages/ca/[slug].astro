@@ -1,0 +1,51 @@
+---
+import Layout from '@layouts/LayoutBase.astro';
+import Hero from '@components/Hero.astro';
+import ProjectMetaInfo from '@components/ProjectMetaInfo.astro';
+import { getEntry, getCollection } from 'astro:content';
+import { filterByLocale } from '@utils/collections';
+export async function getStaticPaths() {
+	const projects = await getCollection('projects');
+	const caProjects = filterByLocale(projects, 'ca');
+	return caProjects.map(project => ({
+		params: { slug: project.slug },
+		props: { project },
+	}));
+};
+const { project } = Astro.props;
+const { Content } = await project.render();
+const dataRaw = await getEntry('static-data', 'template-proyecto');
+const dataFragments = dataRaw.data;
+---
+
+<Layout title={project.data.title}>
+	<main>
+		<Hero
+			textintro='Proyecto'
+			maintitle={project.data.title}
+		/>
+		<section class="container py-8">
+			<aside>
+				<ProjectMetaInfo
+					client={project.data.client}
+					url={project.data.url}
+					year={project.data.year}
+				/>
+			</aside>
+			<div class="pt-6">
+				<Content />
+			</div>
+			<a
+				class="link-to-projects inline-block pt-8 text-xs"
+				href={dataFragments.fragment_1}
+				aria-label={dataFragments.fragment_2}
+			>
+				&#x02190; {dataFragments.fragment_3}
+			</a>
+      </section>
+	</main>
+</Layout>
+
+<style is:global>
+
+</style>

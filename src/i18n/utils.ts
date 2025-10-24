@@ -1,14 +1,12 @@
 import { defaultLang, showDefaultLang, routes } from './ui'
 import { stringToTranslate } from './strings-to-translate'
 
-// Return es or ca
 export function getLangFromUrl(url: URL) {
     const [, lang] = url.pathname.split('/')
     if (lang in stringToTranslate) return lang as keyof typeof stringToTranslate
     return defaultLang
 }
 
-//
 export function useTranslations(lang: keyof typeof stringToTranslate) {
     return function t(
         key: keyof (typeof stringToTranslate)[typeof defaultLang]
@@ -19,7 +17,6 @@ export function useTranslations(lang: keyof typeof stringToTranslate) {
     }
 }
 
-// Return translatePath
 export function useTranslatedPath(lang: keyof typeof stringToTranslate) {
     return function translatePath(path: string, l: string = lang) {
         const pathName = path.replaceAll('/', '')

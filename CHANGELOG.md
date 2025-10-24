@@ -1,5 +1,17 @@
 # Studio Moare Website Changelog
 
+## [2.0.0] - 2025-10-XX
+
+### Add
+
+-   MDX.
+-   Content projects catala.
+-   Utils directory.
+
+### Changed
+
+-   Folder structure.
+
 ## [1.0.6] - 2025-09-29
 
 ### Add

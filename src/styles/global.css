@@ -134,7 +134,7 @@
     main a {
         @apply border-b border-dotted;
     }
-    img {
+    /* img {
         padding-top: 2rem;
-    }
+    } */
 }

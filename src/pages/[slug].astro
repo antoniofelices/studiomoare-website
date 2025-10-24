@@ -3,33 +3,33 @@ import Layout from '@layouts/LayoutBase.astro';
 import Hero from '@components/Hero.astro';
 import ProjectMetaInfo from '@components/ProjectMetaInfo.astro';
 import { getEntry, getCollection } from 'astro:content';
+import { filterByLocale } from '@utils/collections';
 export async function getStaticPaths() {
 	const projects = await getCollection('projects');
-	return projects.map((entry) => {
-		return {
-			params: { slug: entry.slug },
-			props: { entry },
-		};
-	});
+	const esProjects = filterByLocale(projects, 'es');
+	return esProjects.map(project => ({
+		params: { slug: project.slug },
+		props: { project },
+	}));
 };
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { project } = Astro.props;
+const { Content } = await project.render();
 const dataRaw = await getEntry('static-data', 'template-proyecto');
 const dataFragments = dataRaw.data;
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={project.data.title}>
 	<main>
 		<Hero
 			textintro='Proyecto'
-			maintitle={entry.data.title}
+			maintitle={project.data.title}
 		/>
 		<section class="container py-8">
 			<aside>
 				<ProjectMetaInfo
-					client={entry.data.client}
-					url={entry.data.url}
-					year={entry.data.year}
+					client={project.data.client}
+					url={project.data.url}
+					year={project.data.year}
 				/>
 			</aside>
 			<div class="pt-6">
@@ -45,7 +45,3 @@ const dataFragments = dataRaw.data;
       </section>
 	</main>
 </Layout>
-
-<style is:global>
-
-</style>
