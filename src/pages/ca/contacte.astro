@@ -1,22 +1,27 @@
 ---
 import Layout from '@layouts/LayoutBase.astro';
+import Hero from '@components/Hero.astro';
 import Form from '@components/Form.astro';
-
 import { getEntry } from 'astro:content';
 const dataRaw = await getEntry('static-data', 'page-contacte');
 const dataFragments = dataRaw.data;
 ---
 
 <Layout title={dataFragments.fragment_2} includeFooter={false} description={dataFragments.fragment_2}>
-	<main class="grid place-items-center min-h-dvh">
-		<div class="max-w-lg px-4 lg:px-0 lg:px-0 my-12 lg:my-0">
-			<h1 class="text-4xl font-bold sm:text-6xl mt-12 mb-4">{dataFragments.fragment_3}</h1>
+	<main>
+		<Hero
+			maintitle={dataFragments.fragment_1}
+			textintro={dataFragments.fragment_2}
+			secondarycontent={dataFragments.fragment_4}
+		/>
+		<div class="container py-4">
 			<div class="text-sm mb-4">
-				<p>{dataFragments.fragment_4}</p>
 				<p>{dataFragments.fragment_6}</p>
 				<p>{dataFragments.fragment_7}</p>
 			</div>
-			<Form />
+			<div class="max-w-xl">
+				<Form />
+			</div>
 		</div>
 	</main>
 </Layout>

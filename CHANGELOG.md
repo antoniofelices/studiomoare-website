@@ -1,6 +1,6 @@
 # Studio Moare Website Changelog
 
-## [2.0.0] - 2025-10-XX
+## [2.0.0] - 2025-10-26
 
 ### Add
 
@@ -11,6 +11,9 @@
 ### Changed
 
 -   Folder structure.
+-   Fix the contact form.
+-   Fix the multilingual system.
+-   Update all packages.
 
 ## [1.0.6] - 2025-09-29
 
