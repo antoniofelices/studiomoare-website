@@ -11,16 +11,16 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.7",
-        "@astrojs/react": "^4.0.0",
+        "@astrojs/mdx": "^4.3.8",
+        "@astrojs/react": "^4.4.0",
         "@sindresorhus/slugify": "^3.0.0",
-        "@tailwindcss/vite": "^4.0.14",
-        "@types/react": "^19.0.11",
-        "@types/react-dom": "^19.0.4",
-        "astro": "^5.0.3",
-        "astro-icon": "^1.1.4",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0",
-        "tailwindcss": "^4.0.14"
+        "@tailwindcss/vite": "^4.1.16",
+        "@types/react": "^19.2.2",
+        "@types/react-dom": "^19.2.2",
+        "astro": "^5.15.1",
+        "astro-icon": "^1.1.5",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "tailwindcss": "^4.1.16"
     }
 }
