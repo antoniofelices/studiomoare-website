@@ -14,6 +14,10 @@
 - Update to Content Loader API.
 - Rename LayoutBase.astro to Layout.astro
 
+### Removed
+
+- Remove getform.
+
 ## [2.0.0] - 2025-10-26
 
 ### Add

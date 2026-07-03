@@ -29,16 +29,22 @@ Missing translation keys fall back to the default language automatically.
 
 ### Content Collections
 
-Defined in `src/content.config.js`:
+Defined in `src/content.config.ts` using the **Content Loader API** (`glob` from `astro/loaders`):
 
-1. **`projects`** (content) — Each project has a directory under `src/content/projects/{name}/` containing separate `es.mdx` and `ca.mdx` files. The slug pattern is `project-name/language-code`. Use `src/utils/collections.ts` → `filterByLocale()` to filter and strip language suffixes when rendering lists.
+1. **`projects`** — Each project has a directory under `src/content/projects/{name}/` containing separate `es.mdx` and `ca.mdx` files. Entry IDs follow the pattern `project-name/language-code`. Use `src/utils/collections.ts` → `filterByLocale()` to filter and strip language suffixes when rendering lists.
 
-2. **`static-data`** (data) — JSON files named `page-{name}-{lang}.json` holding page content as `fragment_1`…`fragment_15` fields. Pages load their content with `getEntry('static-data', 'page-name-lang')` and render fragments directly — no hardcoded copy in templates.
+2. **`static-data`** — JSON files under `src/content/static-data/` named `page-{name}-{lang}.json`, holding page content as `fragment_1`…`fragment_15` fields. Pages load their content with `getEntry('static-data', 'page-name-lang')` and render fragments directly — no hardcoded copy in templates.
+
+**Critical Content Loader API patterns** (differs from legacy Astro content collections):
+- Use `entry.id` — not `entry.slug` (which no longer exists)
+- Use `render(entry)` imported from `astro:content` — not `entry.render()`
+- `getEntry()` returns `T | undefined`; always use `dataRaw!.data` (non-null assertion) after confirming the entry exists at the key you passed
 
 ### Page Structure
 
 - **Static pages**: One `.astro` file per locale (e.g., `src/pages/index.astro` + `src/pages/ca/index.astro`). Load fragments from `static-data` collection.
-- **Dynamic project pages**: `src/pages/[slug].astro` + `src/pages/ca/[slug].astro` — use `getStaticPaths()` to pre-generate all routes at build time.
+- **Dynamic project pages**: `src/pages/[slug].astro` + `src/pages/ca/[slug].astro` — use `getStaticPaths()` to pre-generate all routes.
+- **Technology tag pages**: `src/pages/tecnologia/[tag].astro` — derives tags from all project entries; no Catalan equivalent.
 
 ### React Islands
 
@@ -50,16 +56,21 @@ Interactive UI is isolated to React components loaded with `client:only="react"`
 
 Tailwind CSS v4 — **no `tailwind.config` file**. All theme customization (brand colors `m-blue`, `m-orange`, `m-beige`, etc.; custom type scale; custom spacing) is defined inline in `src/styles/global.css` using `@theme`. Dark mode is toggled via a `.dark` class on the root element.
 
+### Layout
+
+`src/layouts/Layout.astro` is the single shared layout. It accepts `title`, `description`, `ogImage`, `includeFooter` (default `true`), `mainMenu` (default `true`), and `robots` props. It handles all SEO meta tags, hreflang links, canonical URL, Open Graph, Twitter Card, and schema.org JSON-LD scripts.
+
 ### Path Aliases
 
 Configured in `tsconfig.json`: `@assets/*`, `@components/*`, `@hooks/*`, `@i18n/*`, `@layouts/*`, `@styles/*`, `@utils/*`.
 
-### Environment Variables
+### Contact Form
 
-- `VITE_GETFORM_KEY` — required for the contact form (`src/components/Form.astro`), which submits to GetForm.io
+`src/components/Form.astro` uses **Netlify Forms** (`data-netlify="true"`). No environment variables required — Netlify detects and processes the form automatically at deploy time. Submissions redirect to `/gracias`.
 
 ### Key Non-Obvious Patterns
 
 - **Adding a new translatable string**: add it to `src/i18n/strings-to-translate.ts` in both locales; the type is derived automatically.
 - **Adding a new page route**: add the slug mapping to `src/i18n/ui.ts` → `routes`, then create paired `.astro` files in `src/pages/` and `src/pages/ca/`.
 - **Adding a new project**: create `src/content/projects/{name}/es.mdx` and `ca.mdx` with the schema fields (`title`, `tags`, `sortOrder`, `type`, `client`, optionally `image`, `url`, `year`).
+- **Vite compatibility**: Astro 7 requires Vite 8 (`overrides.vite: "^8"` in `package.json`). Do not downgrade the Vite override — Astro 7.0.4 + Vite 7.3.x breaks the build with a rollupOptions SSR error.
