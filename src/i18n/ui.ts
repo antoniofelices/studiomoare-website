@@ -23,9 +23,11 @@ export const routes: Record<LangType, Record<string, string>> = {
     es: {
         projects: 'proyectos',
         contact: 'contacto',
+        thanks: 'gracias',
     },
     ca: {
         projects: 'projectes',
         contact: 'contacte',
+        thanks: 'gracies',
     },
 }

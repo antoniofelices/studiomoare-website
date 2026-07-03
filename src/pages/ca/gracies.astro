@@ -1,9 +1,8 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import Hero from '@components/Hero.astro'
-import Form from '@components/Form.astro'
 import { getEntry } from 'astro:content'
-const dataRaw = await getEntry('static-data', 'page-contacto')
+const dataRaw = await getEntry('static-data', 'page-gracies')
 const dataFragments = dataRaw!.data
 ---
 
@@ -11,20 +10,13 @@ const dataFragments = dataRaw!.data
     title={dataFragments.fragment_2}
     includeFooter={false}
     description={dataFragments.fragment_2}
+    robots="noindex, nofollow"
 >
     <main>
         <Hero
             maintitle={dataFragments.fragment_1}
             textintro={dataFragments.fragment_2}
+            secondarycontent={dataFragments.fragment_3}
         />
-        <div class="container py-4">
-            <div class="text-sm mb-4">
-                <p>{dataFragments.fragment_6}</p>
-                <p>{dataFragments.fragment_7}</p>
-            </div>
-            <div class="max-w-xl">
-                <Form />
-            </div>
-        </div>
     </main>
 </Layout>
