@@ -1,7 +1,7 @@
 {
     "name": "studiomoare",
     "type": "module",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "license": "GPL-3.0",
     "scripts": {
         "dev": "astro dev",
@@ -10,14 +10,17 @@
         "preview": "astro preview",
         "astro": "astro"
     },
+    "overrides": {
+        "vite": "^8"
+    },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.8",
-        "@astrojs/react": "^4.4.0",
+        "@astrojs/mdx": "^7.0.0",
+        "@astrojs/react": "^6.0.0",
         "@sindresorhus/slugify": "^3.0.0",
         "@tailwindcss/vite": "^4.1.16",
         "@types/react": "^19.2.2",
         "@types/react-dom": "^19.2.2",
-        "astro": "^5.15.1",
+        "astro": "^7.0.6",
         "astro-icon": "^1.1.5",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",

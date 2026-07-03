@@ -30,3 +30,51 @@ const includeMainMenu = Astro.props.includeMainMenu;
 		</div>
 	</div>
 </header>
+
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const body = document.body
+        const containerNavigation = document.getElementById(
+            'container-navigation'
+        ) as HTMLElement
+        const iconClose = document.getElementById('icon-close') as HTMLElement
+        const iconOpen = document.getElementById('icon-open') as HTMLElement
+        const mobileDropdownToggleButton = document.getElementById(
+            'mobile-dropdown-toggle'
+        ) as HTMLElement
+
+        if (!containerNavigation) return
+
+        function toggleMobileMenu() {
+            body.classList.toggle('h-dvh')
+            body.classList.toggle('overflow-y-hidden')
+            containerNavigation.classList.toggle('hidden')
+            iconClose.classList.toggle('hidden')
+            iconOpen.classList.toggle('hidden')
+        }
+
+        function closeMobileMenu() {
+            body.classList.remove('h-dvh')
+            body.classList.remove('overflow-y-hidden')
+            containerNavigation.classList.add('hidden')
+            iconClose.classList.add('hidden')
+            iconOpen.classList.remove('hidden')
+        }
+
+        function handleOutsideClick(event: Event) {
+            const target = event.target as HTMLElement
+            if (
+                !target.closest('#container-navigation') &&
+                !target.closest('.mobile-dropdown-toggle')
+            ) {
+                if (!containerNavigation.classList.contains('hidden')) {
+                    closeMobileMenu()
+                }
+            }
+        }
+
+        mobileDropdownToggleButton.addEventListener('click', toggleMobileMenu)
+        document.addEventListener('click', handleOutsideClick)
+    })
+</script>

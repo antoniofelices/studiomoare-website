@@ -1,0 +1,131 @@
+---
+import { ClientRouter } from 'astro:transitions'
+import { languages, hreflangMap, ogLocales, defaultLang } from '@i18n/ui'
+import type { LangType } from '@i18n/ui'
+import {
+    getLangFromUrl,
+    useTranslations,
+    useTranslatedPath,
+    getRouteFromUrl,
+} from '@i18n/utils'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import '@styles/fonts.css'
+import '@styles/global.css'
+
+interface Props {
+    title?: string
+    description?: string
+    ogImage?: string
+    includeFooter?: boolean
+    mainMenu?: boolean
+    robots?: string
+}
+
+const { currentLocale, props, site, url } = Astro
+
+const {
+    title,
+    description,
+    ogImage,
+    includeFooter = true,
+    mainMenu = true,
+    robots = 'index, follow',
+} = props
+
+const lang = getLangFromUrl(url)
+const translateString = useTranslations(lang)
+const translatePath = useTranslatedPath(lang)
+const routeKey = getRouteFromUrl(url)
+const canonicalUrl = new URL(url.pathname, site)
+const siteName = translateString('title')
+const ogLocale = ogLocales[lang]
+const alternateLinks = (Object.keys(languages) as LangType[]).map((l) => ({
+    hreflang: hreflangMap[l],
+    href: new URL(translatePath(routeKey ?? '/', l), site).href,
+}))
+const xDefaultHref = new URL(translatePath(routeKey ?? '/', defaultLang), site)
+    .href
+---
+
+<!doctype html>
+<html lang={currentLocale}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content={robots} />
+
+        <link rel="canonical" href={canonicalUrl.href} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="generator" content={Astro.generator} />
+        {
+            alternateLinks.map(({ hreflang, href }) => (
+                <link rel="alternate" hreflang={hreflang} href={href} />
+            ))
+        }
+        <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
+        <title>{title}</title>
+        <meta property="og:locale" content={ogLocale} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl.href} />
+        <meta property="og:site_name" content={siteName} />
+        <meta
+            property="og:image"
+            content={ogImage || `${site}/og-image.webp`}
+        />
+        <meta property="og:image:alt" content={siteName} />
+        <meta property="og:image:type" content="image/webp" />
+        <meta property="og:image:width" content="949" />
+        <meta property="og:image:height" content="783" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta
+            name="twitter:image"
+            content={ogImage || `${site}/og-image.webp`}
+        />
+        <meta name="twitter:image:alt" content={siteName} />
+        <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            href="/fonts/geomanist/geomanist-regular-webfont.woff2"
+            crossorigin
+        />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'Organization',
+                name: siteName,
+                url: site,
+                logo: `${site}/favicon.svg`,
+                description: description,
+                contactPoint: {
+                    '@type': 'ContactPoint',
+                    contactType: 'Customer Support',
+                    email: 'info@studiomoare.com',
+                },
+            })}
+        />
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: siteName,
+                url: site,
+            })}
+        />
+        <ClientRouter />
+    </head>
+    <body class="text-m-blue bg-m-beige dark:text-m-beige dark:bg-m-blue">
+        <Header includeMainMenu={mainMenu} />
+        <slot />
+        {includeFooter && <Footer />}
+    </body>
+</html>

@@ -17,7 +17,7 @@ const ProjectList = ({ projectsRaw }) => {
                 {projects.map((project) => (
                     <ProjectListItem
                         key={project.id}
-                        linktoproject={project.slug}
+                        linktoproject={project.id}
                         title={project.data.title}
                         type={project.data.type}
                         year={project.data.year}

@@ -1,55 +1,59 @@
 ---
-import Layout from '@layouts/LayoutBase.astro';
-import Hero from '@components/Hero.astro';
-import ProjectListItem from '@components/ProjectListItem.astro';
+import Layout from '@layouts/Layout.astro'
+import Hero from '@components/Hero.astro'
+import ProjectListItem from '@components/ProjectListItem.astro'
 
-import { getEntry, getCollection } from 'astro:content';
-const dataRaw = await getEntry('static-data', 'template-technologies');
-const dataFragments = dataRaw.data;
+import { getEntry, getCollection } from 'astro:content'
+const dataRaw = await getEntry('static-data', 'template-technologies')
+const dataFragments = dataRaw!.data
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  const uniqueTags = [...new Set(projects.map((post) => post.data.tags).flat())];
+    const projects = await getCollection('projects')
+    const uniqueTags = [
+        ...new Set(projects.map((post) => post.data.tags).flat()),
+    ]
 
-  return uniqueTags.map((tag) => {
-    const filteredPosts = projects.filter((post) =>
-      post.data.tags.includes(tag)
-    );
-    return {
-      params: { tag },
-      props: { posts: filteredPosts },
-    };
-  });
+    return uniqueTags.map((tag) => {
+        const filteredPosts = projects.filter((post) =>
+            post.data.tags.includes(tag)
+        )
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        }
+    })
 }
 
-const { tag } = Astro.params;
-const { posts } = Astro.props;
-const postsOrder = posts.sort((a, b) => b.data.sortOrder - a.data.sortOrder);
+const { tag } = Astro.params
+const { posts } = Astro.props
+const postsOrder = posts.sort((a, b) => b.data.sortOrder - a.data.sortOrder)
 ---
 
 <Layout title={dataFragments.fragment_3}>
-	<main>
-		<Hero
-			maintitle={tag}
-			secondarycontent={`${dataFragments.fragment_4} ${tag}`}
-		/>
-		<section class="container py-8">
-			<h2 class="sr-only">
-				{dataFragments.fragment_5}
-			</h2>
-			<ul class="projects">
-				{postsOrder.map(project => (
-				  <ProjectListItem
-					key={project.id}
-					value={project.id}
-					linktoproject={project.slug}
-					title={project.data.title}
-					year={project.data.year}
-					url={project.data.url}
-					type={project.data.type}
-				  />
-				))}
-			</ul>
-		</section>
-	</main>
+    <main>
+        <Hero
+            maintitle={tag}
+            secondarycontent={`${dataFragments.fragment_4} ${tag}`}
+        />
+        <section class="container py-8">
+            <h2 class="sr-only">
+                {dataFragments.fragment_5}
+            </h2>
+            <ul class="projects">
+                {
+                    postsOrder.map((project) => (
+                        <ProjectListItem
+                            key={project.id}
+                            value={project.id}
+                            linktoproject={project.id}
+                            title={project.data.title}
+                            year={project.data.year}
+                            url={project.data.url}
+                            type={project.data.type}
+                        />
+                    ))
+                }
+            </ul>
+        </section>
+    </main>
 </Layout>
