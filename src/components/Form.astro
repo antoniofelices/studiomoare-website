@@ -13,7 +13,12 @@ const translatePath = useTranslatedPath(lang)
         class="rounded-sm"
         action={translatePath('thanks')}
     >
-        <input type="hidden" name="form-name" value="contact" />
+        <input
+            type="hidden"
+            name="form-name"
+            value="contact"
+            value="New lead from studiomoare.com"
+        />
         <div class="mb-4">
             <label class="block text-sm font-bold mb-2" for="form-name">
                 {translateString('formName')}
