@@ -5,9 +5,9 @@ export function filterByLocale(
     locale: string
 ) {
     return entries
-        .filter((entry) => entry.slug.endsWith(`/${locale}`))
+        .filter((entry) => entry.id.endsWith(`/${locale}`))
         .map((entry) => ({
             ...entry,
-            slug: entry.slug.replace(`/${locale}`, ''),
+            id: entry.id.replace(`/${locale}`, ''),
         }))
 }

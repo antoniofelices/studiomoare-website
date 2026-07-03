@@ -1,7 +1,9 @@
-import { z, defineCollection } from 'astro:content'
+import { defineCollection } from 'astro:content'
+import { glob } from 'astro/loaders'
+import { z } from 'astro/zod'
 
 const projects = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/*.mdx', base: './src/content/projects' }),
     schema: z.object({
         title: z.string(),
         image: z
@@ -20,7 +22,7 @@ const projects = defineCollection({
 })
 
 const staticData = defineCollection({
-    type: 'data',
+    loader: glob({ pattern: '**/*.json', base: './src/content/static-data' }),
     schema: z.object({
         slug: z.string(),
         fragment_1: z.string().optional(),
@@ -42,6 +44,6 @@ const staticData = defineCollection({
 })
 
 export const collections = {
-    projects: projects,
+    projects,
     'static-data': staticData,
 }

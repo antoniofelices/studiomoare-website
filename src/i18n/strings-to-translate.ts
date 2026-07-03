@@ -40,3 +40,6 @@ export const stringToTranslate = {
         description: 'Un estudi de disseny i desenvolupament web a Barcelona',
     },
 }
+
+export type TranslationKeyType =
+    keyof (typeof stringToTranslate)[keyof typeof stringToTranslate]

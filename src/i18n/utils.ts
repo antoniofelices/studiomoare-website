@@ -1,65 +1,58 @@
 import { defaultLang, showDefaultLang, routes } from './ui'
+import type { LangType } from './ui'
 import { stringToTranslate } from './strings-to-translate'
+import type { TranslationKeyType } from './strings-to-translate'
 
-export function getLangFromUrl(url: URL) {
+const isLang = (lang: string): lang is LangType => {
+    return lang in stringToTranslate
+}
+
+const getKeyByValue = (
+    obj: Record<string, string>,
+    value: string
+): string | undefined => {
+    return Object.keys(obj).find((key) => obj[key] === value)
+}
+
+export const getLangFromUrl = (url: URL) => {
     const [, lang] = url.pathname.split('/')
-    if (lang in stringToTranslate) return lang as keyof typeof stringToTranslate
+    if (isLang(lang)) return lang
     return defaultLang
 }
 
-export function useTranslations(lang: keyof typeof stringToTranslate) {
-    return function t(
-        key: keyof (typeof stringToTranslate)[typeof defaultLang]
-    ) {
+export const useTranslations = (lang: LangType) => {
+    const translation = (key: TranslationKeyType) => {
         return (
             stringToTranslate[lang][key] || stringToTranslate[defaultLang][key]
         )
     }
+    return translation
 }
 
-export function useTranslatedPath(lang: keyof typeof stringToTranslate) {
-    return function translatePath(path: string, l: string = lang) {
+export const useTranslatedPath = (lang: LangType) => {
+    const translatePath = (path: string, l: LangType = lang) => {
         const pathName = path.replaceAll('/', '')
-        const hasTranslation =
-            defaultLang !== l &&
-            routes[l] !== undefined &&
-            routes[l][pathName] !== undefined
-        const translatedPath = hasTranslation ? '/' + routes[l][pathName] : path
+        const langRoutes = routes[l] ?? {}
+        const translatedPath =
+            pathName in langRoutes ? '/' + langRoutes[pathName] : path
 
-        return !showDefaultLang && l === defaultLang
-            ? translatedPath
-            : `/${l}${translatedPath}`
+        return showDefaultLang || l !== defaultLang
+            ? `/${l}${translatedPath}`
+            : translatedPath
     }
+
+    return translatePath
 }
 
-export function getRouteFromUrl(url: URL): string | undefined {
-    const pathname = new URL(url).pathname
-    const parts = pathname?.split('/')
-    const path = parts.pop() || parts.pop()
+export const getRouteFromUrl = (url: URL): string | undefined => {
+    const path = url.pathname.split('/').filter(Boolean).pop()
 
-    if (path === undefined) {
-        return undefined
-    }
+    if (path === undefined) return undefined
 
     const currentLang = getLangFromUrl(url)
 
-    if (defaultLang === currentLang) {
-        const route = Object.values(routes)[0]
-        return route[path] !== undefined ? route[path] : undefined
-    }
+    if (defaultLang === currentLang)
+        return getKeyByValue(routes[defaultLang], path)
 
-    const getKeyByValue = (
-        obj: Record<string, string>,
-        value: string
-    ): string | undefined => {
-        return Object.keys(obj).find((key) => obj[key] === value)
-    }
-
-    const reversedKey = getKeyByValue(routes[currentLang], path)
-
-    if (reversedKey !== undefined) {
-        return reversedKey
-    }
-
-    return undefined
+    return getKeyByValue(routes[currentLang], path)
 }

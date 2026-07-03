@@ -13,10 +13,10 @@
 
 ## Technologies
 
--   Astro.
--   React.
--   Tailwind.
--   JavaScript.
+- Astro.
+- React.
+- Tailwind.
+- TypeScript.
 
 ## Documentation
 
@@ -44,9 +44,8 @@ $ npm run dev
 
 ## Future Improvements
 
--   Refactoring all JavaScript to TypeScript.
--   Try to add projects with some frecuency.
--   Keep the dependencies update.
+- Try to add projects with some frecuency.
+- Keep the dependencies update.
 
 ## Contributing
 

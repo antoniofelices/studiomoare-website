@@ -1,26 +1,26 @@
 ---
-import Layout from '@layouts/LayoutBase.astro';
-import Hero from '@components/Hero.astro';
-import { getEntry, getCollection } from 'astro:content';
-import { filterByLocale } from '@utils/collections';
-const dataRaw = await getEntry('static-data', 'page-proyectos-desarrollo-web');
-const dataFragments = dataRaw.data;
-const projects = await getCollection('projects');
-const projectsRaw = filterByLocale(projects, 'es');
-import ProjectList from '@components/ProjectList.jsx';
+import Layout from '@layouts/Layout.astro'
+import Hero from '@components/Hero.astro'
+import { getEntry, getCollection } from 'astro:content'
+import { filterByLocale } from '@utils/collections'
+const dataRaw = await getEntry('static-data', 'page-proyectos-desarrollo-web')
+const dataFragments = dataRaw!.data
+const projects = await getCollection('projects')
+const projectsRaw = filterByLocale(projects, 'es')
+import ProjectList from '@components/ProjectList.jsx'
 ---
 
 <Layout title={dataFragments.fragment_3} description={dataFragments.fragment_6}>
-	<main>
-		<Hero
-			maintitle={dataFragments.fragment_3}
-			secondarycontent={dataFragments.fragment_4}
-		/>
-		<section class="container py-4">
-			<h2 class="sr-only">
-				{dataFragments.fragment_5}
-			</h2>
-			<ProjectList projectsRaw={projectsRaw} client:only="react" />
-		</section>
-	</main>
+    <main>
+        <Hero
+            maintitle={dataFragments.fragment_3}
+            secondarycontent={dataFragments.fragment_4}
+        />
+        <section class="container py-4">
+            <h2 class="sr-only">
+                {dataFragments.fragment_5}
+            </h2>
+            <ProjectList projectsRaw={projectsRaw} client:only="react" />
+        </section>
+    </main>
 </Layout>
