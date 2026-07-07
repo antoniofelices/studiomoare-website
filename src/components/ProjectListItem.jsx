@@ -30,6 +30,7 @@ const ProjectListItem = ({ linktoproject, title, type, year, url }) => {
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            aria-hidden="true"
                             className="inline feather feather-arrow-right"
                         >
                             <line x1="5" y1="12" x2="19" y2="12"></line>
