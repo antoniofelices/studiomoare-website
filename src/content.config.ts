@@ -40,6 +40,7 @@ const staticData = defineCollection({
         fragment_13: z.string().optional(),
         fragment_14: z.string().optional(),
         fragment_15: z.string().optional(),
+        list_1: z.array(z.string()).optional(),
     }),
 })
 
