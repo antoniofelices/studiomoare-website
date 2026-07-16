@@ -1,0 +1,21 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Hero from '@components/Hero.astro'
+import { getEntry } from 'astro:content'
+const dataRaw = await getEntry('static-data', 'page-how-we-work')
+const dataFragments = dataRaw!.data
+---
+
+<Layout title={dataFragments.fragment_1} description={dataFragments.fragment_5}>
+    <main>
+        <Hero
+            maintitle={dataFragments.fragment_1}
+            secondarycontent={dataFragments.fragment_4}
+        />
+        <div class="container py-4">
+            <ul class="text-sm sm:text-l list-decimal ml-6">
+                {dataFragments.list_1!.map((item) => <li>{item}</li>)}
+            </ul>
+        </div>
+    </main>
+</Layout>

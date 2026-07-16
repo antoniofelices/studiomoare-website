@@ -1,0 +1,27 @@
+---
+import Layout from '@layouts/Layout.astro'
+import TextIntro from '@components/TextIntro.astro'
+import { getEntry } from 'astro:content'
+const dataRaw = await getEntry('static-data', 'page-index-en')
+const dataFragments = dataRaw!.data
+---
+
+<Layout title={dataFragments.fragment_4} description={dataFragments.fragment_2} includeFooter={false} mainMenu={false}>
+    <main
+        class="h-dvh overflow-hidden bg-no-repeat bg-cover bg-center"
+        style="background-image: url(/studio-moare-02.svg);"
+    >
+        <div class="container">
+            <div class="grid place-items-center h-screen">
+                <TextIntro
+                    title={dataFragments.fragment_1}
+                    text={dataFragments.fragment_2}
+                    linktodevelop={dataFragments.fragment_6}
+                    textlinktodevelop={dataFragments.fragment_4}
+                    linktodesign={dataFragments.fragment_5}
+                    textlinktodesign={dataFragments.fragment_3}
+                />
+            </div>
+        </div>
+    </main>
+</Layout>

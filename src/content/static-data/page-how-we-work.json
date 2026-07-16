@@ -1,0 +1,21 @@
+{
+    "slug": "page-how-we-work",
+    "fragment_1": "How we work",
+    "fragment_2": "How we turn ideas into reality.",
+    "fragment_3": "Studio Moaré, our formula for the success of a web project: discover how we turn ideas into reality.",
+    "fragment_4": "Discover how we turn ideas into reality.",
+    "fragment_5": "Write to us if you have any questions, want information about our services, or just want to say hello",
+    "list_1": [
+        "Analysis. You tell us your idea.",
+        "Proposal. We put together a quote based on what we discussed.",
+        "If you approve it, we create a staging environment so you can see and share the process at every step.",
+        "We implement the agreed features and the information architecture in the staging environment.",
+        "We create and implement a design proposal.",
+        "We import the content. This is usually a bulk import of text and images.",
+        "We review the screens agreed on in the quote. These are usually the most important screens, such as the home page or the about page, etc.",
+        "We create training videos explaining how your new site works. After watching them, you'll be able to manage all its content yourself.",
+        "We move the site to a production environment. We advise you on hiring a hosting provider.",
+        "We test everything, check that it all works, and register your site with different services and applications.",
+        "And if you'd like… we take care of your site's maintenance."
+    ]
+}

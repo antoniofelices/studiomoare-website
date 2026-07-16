@@ -1,0 +1,33 @@
+---
+title: Activistas por la vida
+image:
+    src: activistasporlavida_03.jpg
+    alt: Activistas por la vida desktop image
+tags:
+    - React
+sortOrder: 202103
+type: website
+client: Asociación Entrepueblos
+url: https://activistasporlavida.org/
+year: '2021'
+---
+
+import { Image } from 'astro:assets'
+import preview01 from './activistasporlavida_01.jpg'
+import preview02 from './activistasporlavida_02.jpg'
+import preview03 from './activistasporlavida_03.jpg'
+import preview04 from './activistasporlavida_04.jpg'
+import preview05 from './activistasporlavida_05.jpg'
+
+Gatsby framework.
+
+Development of a website for the "Activistas por la vida" project and exhibition.
+
+Design: Gabriel Benavente.
+
+<Image src={preview01} alt="desktop home screen" width={1200} />
+<div class="grid lg:grid-cols-3 lg:gap-4 mt-4">
+    <Image src={preview03} alt="Honduras map screen" width={600} />
+    <Image src={preview02} alt="Guatemala map screen" width={600} />
+    <Image src={preview05} alt="news screen" width={600} />
+</div>
