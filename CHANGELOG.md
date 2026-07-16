@@ -1,5 +1,16 @@
 # Studio Moare Website Changelog
 
+## [2.2.0] - 2026-07-16
+
+### Add
+
+- English version.
+
+### Changed
+
+- The behavior of the lang menu.
+- Move the logic from the Header.astro component to the MenuMain.astro component.
+
 ## [2.1.0] - 2026-07-03
 
 ### Add

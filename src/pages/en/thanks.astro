@@ -1,0 +1,22 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Hero from '@components/Hero.astro'
+import { getEntry } from 'astro:content'
+const dataRaw = await getEntry('static-data', 'page-thanks')
+const dataFragments = dataRaw!.data
+---
+
+<Layout
+    title={dataFragments.fragment_2}
+    includeFooter={false}
+    description={dataFragments.fragment_2}
+    robots="noindex, nofollow"
+>
+    <main>
+        <Hero
+            maintitle={dataFragments.fragment_1}
+            textintro={dataFragments.fragment_2}
+            secondarycontent={dataFragments.fragment_3}
+        />
+    </main>
+</Layout>

@@ -1,28 +1,9 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import Hero from '@components/Hero.astro'
-const dataFragments = {
-    fragment_1: 'Cómo trabajamos',
-    fragment_2: 'Cómo transformamos ideas en realidad.',
-    fragment_3:
-        'Studio Moaré nuestra fórmula para el éxito de un proyecto web: Descubre cómo transformamos ideas en realidad.',
-    fragment_4: 'Descubre cómo transformamos ideas en realidad.',
-    fragment_5:
-        'Escríbenos si tienes dudas, quieres información sobre nuestros servicios o simplemente quieres saludarnos',
-    list: [
-        'Análisis. Nos comentas tu idea.',
-        'Propuesta. Hacemos un presupuesto a partir de lo hablado.',
-        'Si lo apruebas, creamos un entorno de pruebas para que en todo momento veas y compartas el proceso.',
-        'Implementamos las funcionalidades acordadas y la arquitectura de la información en el entorno de pruebas.',
-        'Hacemos e implementamos una propuesta de diseño.',
-        'Importamos el contenido. Sera una importación masiva de textos e imágenes.',
-        'Repasamos las pantallas acordadas en el presupuesto. Suelen ser las pantallas mas importantes como la pantalla de inicio o quienes somos, etc.',
-        'Te creamos unos videos de formación explicándote el funcionamiento de tu nuevo sitio. Luego de ver los videos, podrás manipular todo el contenido del mismo.',
-        'Movemos el sitio a un entorno de producción. Te asesoramos al contratar un proveedor de hosting.',
-        'Hacemos pruebas de todo, comprobamos que funciona, damos tu sitio de alta en diferentes servicios y aplicaciones.',
-        'Y si quieres… hacemos el mantenimiento de tu sitio.',
-    ],
-}
+import { getEntry } from 'astro:content'
+const dataRaw = await getEntry('static-data', 'page-como-trabajamos')
+const dataFragments = dataRaw!.data
 ---
 
 <Layout title={dataFragments.fragment_1} description={dataFragments.fragment_5}>
@@ -33,7 +14,7 @@ const dataFragments = {
         />
         <div class="container py-4">
             <ul class="text-sm sm:text-l list-decimal ml-6">
-                {dataFragments.list.map((item) => <li>{item}</li>)}
+                {dataFragments.list_1!.map((item) => <li>{item}</li>)}
             </ul>
         </div>
     </main>

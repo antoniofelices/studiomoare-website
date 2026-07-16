@@ -8,6 +8,7 @@ const ProjectListItem = ({ linktoproject, title, type, year, url }) => {
         {
             es: linktoProjectRaw,
             ca: `ca/${linktoProjectRaw}`,
+            en: `en/${linktoProjectRaw}`,
         }[lang] ?? linktoProjectRaw
 
     return (

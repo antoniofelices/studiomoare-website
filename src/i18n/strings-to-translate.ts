@@ -37,6 +37,25 @@ export const stringToTranslate = {
         title: 'Studio Moare',
         description: 'Un estudi de disseny i desenvolupament web a Barcelona',
     },
+    en: {
+        navHome: 'Home',
+        navProjects: 'Projects',
+        navContact: 'Contact',
+        home: 'home',
+        accessMenu: 'Menu access',
+        project: 'Project',
+        projectCustomer: 'Client',
+        projectOffLine: 'Not available online',
+        projectURL: 'URL',
+        projectYear: 'Year',
+        formName: 'Name',
+        formEmail: 'Email',
+        formQuote: 'Budget',
+        formSend: 'Send',
+        all: 'All',
+        title: 'Studio Moare',
+        description: 'A design and web development studio in Barcelona',
+    },
 }
 
 export type TranslationKeyType =

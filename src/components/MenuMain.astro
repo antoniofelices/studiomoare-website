@@ -6,27 +6,89 @@ const translateString = useTranslations(lang)
 const translatePath = useTranslatedPath(lang)
 ---
 
-<nav
-    class="fixed lg:static top-0 left-0 right-0 h-4/6 lg:h-auto lg:w-auto bg-m-orange lg:bg-transparent z-10 lg:z-auto lg:mx-2"
-    aria-label="Menú principal"
+<button
+    id="mobile-dropdown-toggle"
+    class="p-2 mobile-dropdown-toggle order-last static lg:hidden"
+    type="button"
+    aria-expanded="false"
 >
-    <div class="grid lg:static place-items-center h-full lg:h-auto">
-        <ul class="flex gap-x-2 flex-col md:flex-row text-4xl lg:text-sm">
-            <li class="lg:mx-2">
-                <a href={translatePath('/')}>
-                    {translateString('navHome')}
-                </a>
-            </li>
-            <li class="lg:mx-2">
-                <a href={translatePath('projects')}>
-                    {translateString('navProjects')}
-                </a>
-            </li>
-            <li class="lg:mx-2">
-                <a href={translatePath('contact')}>
-                    {translateString('navContact')}
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <span class="sr-only">{translateString('accessMenu')}</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="close absolute z-20 top-20 right-20 hidden" id="icon-close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    <svg width="32" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true" class="open" id="icon-open"> <path d="m 0,4.7830688 h 24 v 2.4 H 0 Z"></path> <path d="m 0,16.816931 h 22 v 2.4 H 0 Z"></path> <path d="m 0,10.8 h 20 v 2.4 H 0 Z"></path> </svg>
+</button>
+<div id="container-navigation" class="hidden lg:block">
+    <nav
+        class="fixed lg:static top-0 left-0 right-0 h-4/6 lg:h-auto lg:w-auto bg-m-orange lg:bg-transparent z-10 lg:z-auto lg:mx-2"
+        aria-label="Menú principal"
+    >
+        <div class="grid lg:static place-items-center h-full lg:h-auto">
+            <ul class="flex gap-x-2 flex-col md:flex-row text-4xl lg:text-sm">
+                <li class="lg:mx-2">
+                    <a href={translatePath('/')}>
+                        {translateString('navHome')}
+                    </a>
+                </li>
+                <li class="lg:mx-2">
+                    <a href={translatePath('projects')}>
+                        {translateString('navProjects')}
+                    </a>
+                </li>
+                <li class="lg:mx-2">
+                    <a href={translatePath('contact')}>
+                        {translateString('navContact')}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const body = document.body
+        const containerNavigation = document.getElementById(
+            'container-navigation'
+        ) as HTMLElement
+        const iconClose = document.getElementById('icon-close') as HTMLElement
+        const iconOpen = document.getElementById('icon-open') as HTMLElement
+        const mobileDropdownToggleButton = document.getElementById(
+            'mobile-dropdown-toggle'
+        ) as HTMLElement
+
+        if (!containerNavigation) return
+
+        function toggleMobileMenu() {
+            body.classList.toggle('h-dvh')
+            body.classList.toggle('overflow-y-hidden')
+            containerNavigation.classList.toggle('hidden')
+            iconClose.classList.toggle('hidden')
+            iconOpen.classList.toggle('hidden')
+            const isExpanded = mobileDropdownToggleButton.getAttribute('aria-expanded') === 'true'
+            mobileDropdownToggleButton.setAttribute('aria-expanded', String(!isExpanded))
+        }
+
+        function closeMobileMenu() {
+            body.classList.remove('h-dvh')
+            body.classList.remove('overflow-y-hidden')
+            containerNavigation.classList.add('hidden')
+            iconClose.classList.add('hidden')
+            iconOpen.classList.remove('hidden')
+            mobileDropdownToggleButton.setAttribute('aria-expanded', 'false')
+        }
+
+        function handleOutsideClick(event: Event) {
+            const target = event.target as HTMLElement
+            if (
+                !target.closest('#container-navigation') &&
+                !target.closest('.mobile-dropdown-toggle')
+            ) {
+                if (!containerNavigation.classList.contains('hidden')) {
+                    closeMobileMenu()
+                }
+            }
+        }
+
+        mobileDropdownToggleButton.addEventListener('click', toggleMobileMenu)
+        document.addEventListener('click', handleOutsideClick)
+    })
+</script>
