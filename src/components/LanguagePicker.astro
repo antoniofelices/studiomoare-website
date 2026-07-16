@@ -5,37 +5,91 @@ import { getLangFromUrl, useTranslatedPath, getRouteFromUrl } from '@i18n/utils'
 const lang = getLangFromUrl(Astro.url)
 const translatePath = useTranslatedPath(lang)
 const route = getRouteFromUrl(Astro.url)
+const otherLanguages = (Object.keys(languages) as (keyof typeof languages)[]).filter(
+    (l) => l !== lang
+)
 ---
 
-<nav class="flex items-center mx-2" aria-label="Selección de idioma">
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-        class="feather feather-globe mr-2"
+<nav class="relative flex items-center mx-2" aria-label="Selección de idioma">
+    <button
+        id="lang-dropdown-toggle"
+        type="button"
+        class="flex items-center text-xs md:text-sm uppercase font-light"
+        aria-expanded="false"
+        aria-controls="lang-dropdown-menu"
     >
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="2" y1="12" x2="22" y2="12"></line>
-        <path
-            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-        ></path>
-    </svg>
-    <ul class="flex gap-x-2 text-xs md:text-sm uppercase font-light">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            class="feather feather-globe mr-2"
+        >
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path
+                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+            ></path>
+        </svg>
+        {lang}
+    </button>
+    <ul
+        id="lang-dropdown-menu"
+        class="hidden flex-col gap-y-2 absolute top-full right-0 mt-2 py-2 px-3 z-20 bg-m-beige dark:bg-m-blue border border-m-gray-300 dark:border-m-blue-800 rounded-sm text-xs md:text-sm uppercase font-light"
+    >
         {
-            Object.entries(languages).map(([lang]) => (
+            otherLanguages.map((l) => (
                 <li>
-                    <a href={translatePath(`/${route ? route : ''}`, lang)}>
-                        {lang}
+                    <a href={translatePath(`/${route ? route : ''}`, l)}>
+                        {l}
                     </a>
                 </li>
             ))
         }
     </ul>
 </nav>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const toggleButton = document.getElementById(
+            'lang-dropdown-toggle'
+        ) as HTMLElement
+        const dropdownMenu = document.getElementById(
+            'lang-dropdown-menu'
+        ) as HTMLElement
+
+        if (!toggleButton || !dropdownMenu) return
+
+        function closeDropdown() {
+            dropdownMenu.classList.add('hidden')
+            dropdownMenu.classList.remove('flex')
+            toggleButton.setAttribute('aria-expanded', 'false')
+        }
+
+        function toggleDropdown() {
+            const isHidden = dropdownMenu.classList.contains('hidden')
+            dropdownMenu.classList.toggle('hidden', !isHidden)
+            dropdownMenu.classList.toggle('flex', isHidden)
+            toggleButton.setAttribute('aria-expanded', String(isHidden))
+        }
+
+        function handleOutsideClick(event: Event) {
+            const target = event.target as HTMLElement
+            if (
+                !target.closest('#lang-dropdown-toggle') &&
+                !target.closest('#lang-dropdown-menu')
+            ) {
+                closeDropdown()
+            }
+        }
+
+        toggleButton.addEventListener('click', toggleDropdown)
+        document.addEventListener('click', handleOutsideClick)
+    })
+</script>
