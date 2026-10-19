@@ -14,8 +14,8 @@
         "vite": "^8"
     },
     "dependencies": {
-        "@astrojs/mdx": "^7.0.0",
-        "@astrojs/react": "^6.0.0",
+        "@astrojs/mdx": "^8.1.0",
+        "@astrojs/react": "^7.1.0",
         "@sindresorhus/slugify": "^3.0.0",
         "@tailwindcss/vite": "^4.1.16",
         "@types/react": "^19.2.2",
